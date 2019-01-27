@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-export class PokemonSearchPage extends Component {
-  static displayName = PokemonSearchPage.name;
+export class PokemonCard extends Component {
+  static displayName = PokemonCard.name;
 
   constructor (props) {
     super(props);
     this.state = { pokemon: [], loading: true };
 
-    fetch('api/Pokemon/')
+    fetch('api/Pokemon/' + this.props.name)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -20,7 +20,7 @@ export class PokemonSearchPage extends Component {
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Weight</th>ditto
+            <th>Weight</th>
             <th>ID</th>
             <th>Height</th>
             <th>Base Experience</th>
@@ -43,7 +43,7 @@ export class PokemonSearchPage extends Component {
   render () {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : PokemonSearchPage.getPokemon(this.state.pokemon);
+      : PokemonCard.getPokemon(this.state.pokemon);
 
     return (
       <div>
@@ -55,4 +55,4 @@ export class PokemonSearchPage extends Component {
   }
 }
 
-export default PokemonSearchPage;
+export default PokemonCard;
