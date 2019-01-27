@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export class PokemonSearchPage extends Component {
+  static displayName = PokemonSearchPage.name;
 
   constructor (props) {
     super(props);
     this.state = { pokemon: [], loading: true };
 
-    fetch('api/Pokemon/ditto')
+    fetch('api/Pokemon/')
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -15,12 +15,12 @@ export class FetchData extends Component {
       });
   }
 
-  static renderForecastsTable (pokemon) {
+  static getPokemon (pokemon) {
     return (
       <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Weight</th>
+            <th>Weight</th>ditto
             <th>ID</th>
             <th>Height</th>
             <th>Base Experience</th>
@@ -43,14 +43,16 @@ export class FetchData extends Component {
   render () {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.pokemon);
+      : PokemonSearchPage.getPokemon(this.state.pokemon);
 
     return (
       <div>
-        <h1>Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
+        <h1>Pokemon Search</h1>
+        <p>This component fetches data from Pokemon API with .Net Core Web API</p>
         {contents}
       </div>
     );
   }
 }
+
+export default PokemonSearchPage;
