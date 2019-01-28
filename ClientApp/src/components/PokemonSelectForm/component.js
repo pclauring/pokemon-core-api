@@ -17,33 +17,28 @@ class PokemonSelectForm extends Component {
     this.setState({ selectedOption });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   if (this.state.selectedOption.value !== null) {
-  //     var pokemonRequest = this.state.selectedOption.value;
-  //     P.getPokemonByName(pokemonRequest)
-  //       .then(resp => {
-  //         console.log(resp);
-  //         this.props.onSubmit(resp);
-  //       });
-  //   }
-  // };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.selectedOption !== null) {
+      this.props.onSubmit(this.state.selectedOption.value);
+    }
+  };
 
   render() {
 
     const { selectedOption } = this.state;
 
     return (
-            <form onSubmit={this.handleSubmit} className="pokemoncard-form">
-              <Select
-                value={selectedOption}
-                onChange={this.handleChange}
-                options={options}
-                placeholder="Enter a Pokemon Name..."
-              />
-              <hr />
-              <button type="submit" className="pokemon-submit-button">{this.props.buttonTitle} >Submit</button>
-            </form>
+      <form onSubmit={this.handleSubmit} className="pokemoncard-form">
+        <Select
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={options}
+          placeholder="Enter a Pokemon Name..."
+        />
+        <hr />
+        <button type="submit" className="btn btn-primary pokemon-submit-button">Submit</button>
+      </form>
     )
   };
 };
