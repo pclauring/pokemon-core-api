@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import PokemonCard from '../PokemonCard/PokemonCard';
+import PokemonInfo from '../PokemonInfo';
+import PokemonSelectForm from '../PokemonSelectForm';
 
 class PokemonSearchPage extends Component {
   render() {
     return (
       <div className="PokemonSearchPage">
-        <PokemonCard name={"charmander"} />
+        <PokemonInfo name={"charmander"} />
+        <PokemonSelectForm />
       </div>);
   }
 }
