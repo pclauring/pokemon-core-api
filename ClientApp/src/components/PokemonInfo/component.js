@@ -8,7 +8,7 @@ export class PokemonInfo extends Component {
     this.state = { pokemon: [], loading: true };
 
     fetch('api/Pokemon/' + this.props.name)
-      .then(response => response.json())
+    .then(response => response.json())
       .then(data => {
         console.log(data);
        this.setState({ pokemon: [data], loading: false });

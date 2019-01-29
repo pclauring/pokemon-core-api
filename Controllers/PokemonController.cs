@@ -12,28 +12,25 @@ namespace pokemon_card.Controllers
     public class PokemonController : Controller
     {
 
+        static HttpClient client = new HttpClient();
+
         //[HttpGet("[action]")]
         [HttpGet("{name}")]
         public string GetPokemon(string name)
         {
-            HttpClient client = new HttpClient(); 
-
             return client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + name).Result;
         }
 
-        public class WeatherForecast
+        [HttpGet("/async/{name}")]
+        static async Task<Object> GetPokemonAsync(string name)
         {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
-
-            public int TemperatureF
+            Object result = null;
+            HttpResponseMessage response = await client.GetAsync("https://pokeapi.co/api/v2/pokemon/" + name);
+            if (response.IsSuccessStatusCode)
             {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
+                result = await response.Content.ReadAsAsync<Object>();
             }
+            return result;
         }
     }
 }
