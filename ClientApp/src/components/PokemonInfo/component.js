@@ -5,7 +5,7 @@ export class PokemonInfo extends Component {
 
   constructor (props) {
     super(props);
-    this.state = { pokemon: [], loading: true };
+    this.state = { pokemon: [], loading: true};
 
     fetch('api/Pokemon/' + this.props.name)
     .then(response => response.json())

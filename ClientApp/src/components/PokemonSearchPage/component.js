@@ -5,26 +5,23 @@ import PokemonSelectForm from '../PokemonSelectForm';
 class PokemonSearchPage extends Component {
   constructor (props) {
     super(props);
-    this.state = { pokemonId: '', noneSelected: true };
+    this.state = { pokemonId: null};
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit (Id) {
+  onSubmit = (Id) =>{
+    console.log(Id);
     this.setState({
       pokemonId: Id,
-      noneSelected: false
     });
   }
 
   render() {
 
-    let selectedPokemon = this.state.noneSelected
-    ? <p><em>Select a Pokemon... </em></p>
-    :  <PokemonInfo name={this.state.pokemonId} />
-
     return (
       <div className="PokemonSearchPage">
-      {selectedPokemon}
+        {this.state.pokemonId &&
+         <PokemonInfo name={this.state.pokemonId} />}
         <PokemonSelectForm onSubmit={this.onSubmit} />
       </div>);
   }

@@ -37,7 +37,7 @@ class PokemonSelectForm extends Component {
           placeholder="Enter a Pokemon Name..."
         />
         <hr />
-        <button type="submit" className="btn btn-primary pokemon-submit-button">Submit</button>
+        <button type="submit" className="btn btn-secondary pokemon-submit-button">Submit</button>
       </form>
     )
   };
