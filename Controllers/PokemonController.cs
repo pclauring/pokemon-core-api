@@ -20,17 +20,5 @@ namespace pokemon_card.Controllers
         {
             return client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + name).Result;
         }
-
-        [HttpGet("/async/{name}")]
-        static async Task<Object> GetPokemonAsync(string name)
-        {
-            Object result = null;
-            HttpResponseMessage response = await client.GetAsync("https://pokeapi.co/api/v2/pokemon/" + name);
-            if (response.IsSuccessStatusCode)
-            {
-                result = await response.Content.ReadAsAsync<Object>();
-            }
-            return result;
-        }
     }
 }
