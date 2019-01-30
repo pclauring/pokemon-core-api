@@ -10,7 +10,6 @@ class PokemonSearchPage extends Component {
   }
 
   onSubmit = (Id) =>{
-    console.log(Id);
     this.setState({
       pokemonId: Id,
     });
@@ -21,7 +20,7 @@ class PokemonSearchPage extends Component {
     return (
       <div className="PokemonSearchPage">
         {this.state.pokemonId &&
-         <PokemonInfo name={this.state.pokemonId} />}
+         <PokemonInfo id={this.state.pokemonId} />}
         <PokemonSelectForm onSubmit={this.onSubmit} />
       </div>);
   }
