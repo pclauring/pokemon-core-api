@@ -5,13 +5,13 @@ import PokemonSelectForm from '../PokemonSelectForm';
 class PokemonSearchPage extends Component {
   constructor (props) {
     super(props);
-    this.state = { pokemonId: null};
+    this.state = { pokemon: null};
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = (Id) =>{
+  onSubmit = (pokemonData) =>{
     this.setState({
-      pokemonId: Id,
+      pokemon: pokemonData,
     });
   }
 
@@ -19,8 +19,8 @@ class PokemonSearchPage extends Component {
 
     return (
       <div className="PokemonSearchPage">
-        {this.state.pokemonId &&
-         <PokemonInfo id={this.state.pokemonId} />}
+        {this.state.pokemon &&
+         <PokemonInfo pokemon={this.state.pokemon} />}
         <PokemonSelectForm onSubmit={this.onSubmit} />
       </div>);
   }

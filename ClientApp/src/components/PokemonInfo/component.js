@@ -2,21 +2,12 @@ import React, { Component } from 'react';
 
 export class PokemonInfo extends Component {
   static displayName = PokemonInfo.name;
-
-  constructor (props) {
-    super(props);
-    this.state = { pokemon: [], loading: true};
-
-    fetch('api/Pokemon/' + this.props.id)
-    .then(response => response.json())
-      .then(data => {
-       this.setState({ pokemon: [data], loading: false });
-      });
-  }
-
-  static getPokemon (pokemon) {
+  render () {
+    console.log(this.props.pokemon);
     return (
-      <table className='table table-striped'>
+      <div>
+        <h1>Pokemon Search</h1>
+        <table className='table table-striped'>
         <thead>
           <tr>
             <th>Weight</th>
@@ -26,29 +17,14 @@ export class PokemonInfo extends Component {
           </tr>
         </thead>
         <tbody>
-          {pokemon.map(element =>
-            <tr key={element.name}>
-              <td>{element.weight}</td>
-              <td>{element.id}</td>
-              <td>{element.height}</td>
-              <td>{element.base_experience}</td>
+            <tr key={this.props.pokemon.name}>
+              <td>{this.props.pokemon.weight}</td>
+              <td>{this.props.pokemon.id}</td>
+              <td>{this.props.pokemon.height}</td>
+              <td>{this.props.pokemon.base_experience}</td>
             </tr>
-          )}
         </tbody>
       </table>
-    );
-  }
-
-  render () {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : PokemonInfo.getPokemon(this.state.pokemon);
-
-    return (
-      <div>
-        <h1>Pokemon Search</h1>
-        <p>This component fetches data from Pokemon API with .Net Core Web API</p>
-        {contents}
       </div>
     );
   }

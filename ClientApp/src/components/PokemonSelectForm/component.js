@@ -19,9 +19,12 @@ class PokemonSelectForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.selectedOption !== null) {
-      this.props.onSubmit(this.state.selectedOption.value);
-    }
+    var pokemonRequest = this.state.selectedOption.value;
+    fetch('api/Pokemon/' + pokemonRequest.toString())
+    .then(response => response.json())
+      .then(data => {
+       this.props.onSubmit(data);
+      });
   };
 
   render() {
