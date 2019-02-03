@@ -15,10 +15,13 @@ namespace pokemon_card.Controllers
         static HttpClient client = new HttpClient();
 
         //[HttpGet("[action]")]
-        [HttpGet("{name}")]
-        public string GetPokemon(string name)
+        [HttpGet("{Id}")]
+        public string GetPokemon(string Id)
         {
-            return client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + name).Result;
+            return client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + Id).Result;
         }
+
+        [HttpGet("species/{Id}")]
+        public string GetPokemonSpeciesInfo(string Id) => client.GetStringAsync("https://pokeapi.co/api/v2/pokemon-species/" + Id).Result;
     }
 }
