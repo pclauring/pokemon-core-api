@@ -1,5 +1,7 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -20,6 +22,10 @@ namespace pokemon_card
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Api response caching
+            services.AddResponseCaching();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
@@ -46,6 +52,24 @@ namespace pokemon_card
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseResponseCaching();
+
+            app.Use(async (context, next) =>
+    {
+        // For GetTypedHeaders, add: using Microsoft.AspNetCore.Http;
+        context.Response.GetTypedHeaders().CacheControl =
+            new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+            {
+                Public = true,
+                MaxAge = TimeSpan.FromSeconds(10)
+            };
+        context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+            new string[] { "Accept-Encoding" };
+
+        await next();
+    });
+
 
             app.UseMvc(routes =>
             {
