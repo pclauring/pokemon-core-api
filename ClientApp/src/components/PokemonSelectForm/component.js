@@ -20,7 +20,7 @@ class PokemonSelectForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     var pokemonRequest = this.state.selectedOption.value;
-    fetch('api/Pokemon/' + pokemonRequest.toString())
+    fetch('api/Pokemon/full-pokemon/' + pokemonRequest.toString())
     .then(response => response.json())
       .then(data => {
        this.props.onSubmit(data);

@@ -10,18 +10,16 @@ export class PokemonInfo extends Component {
         <table className='table table-striped'>
         <thead>
           <tr>
-            <th>Weight</th>
-            <th>ID</th>
+            <th>Name</th>
             <th>Height</th>
-            <th>Base Experience</th>
+            <th>ID</th>
           </tr>
         </thead>
         <tbody>
             <tr key={this.props.pokemon.name}>
-              <td>{this.props.pokemon.weight}</td>
-              <td>{this.props.pokemon.id}</td>
+            <td>{this.props.pokemon.name}</td>
               <td>{this.props.pokemon.height}</td>
-              <td>{this.props.pokemon.base_experience}</td>
+              <td>{this.props.pokemon.id}</td>
             </tr>
         </tbody>
       </table>
