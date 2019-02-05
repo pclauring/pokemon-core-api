@@ -43,8 +43,23 @@ namespace pokemon_card.Controllers
             public int PokemonId { get; set; }
             [JsonProperty("height")]
             public int Height { get; set; }
-            [JsonProperty("biome")]
-            public string Biome { get; set; }
+            [JsonProperty("types")]
+            public List<PokemonType> PokemonTypes { get; set; }
+        }
+
+
+        public class PokemonType
+        {
+            [JsonProperty("type")]
+            public Type Type { get; set; }
+            [JsonProperty("slot")]
+            public int Slot { get; set; }
+        }
+
+        public class Type
+        {
+            [JsonProperty("name")]
+            public string Name {get; set;}
         }
     }
 }
