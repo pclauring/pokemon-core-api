@@ -60,6 +60,8 @@ namespace pokemon_card.Controllers
         {
             [JsonProperty("name")]
             public string Name {get; set;}
+            [JsonProperty("url")]
+            public string TypeInfoUrl {get; set;}
         }
     }
 }
