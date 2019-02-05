@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using pokemon_card.Models;
 
 namespace pokemon_card.Controllers
 {
@@ -32,36 +33,6 @@ namespace pokemon_card.Controllers
             var response = client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + Id).Result;
             var pokemon = JsonConvert.DeserializeObject<PokemonSpecies>(response);
             return pokemon;
-
-        }
-
-        public class PokemonSpecies
-        {
-            [JsonProperty("name")]
-            public string Name { get; set; }
-            [JsonProperty("id")]
-            public int PokemonId { get; set; }
-            [JsonProperty("height")]
-            public int Height { get; set; }
-            [JsonProperty("types")]
-            public List<PokemonType> PokemonTypes { get; set; }
-        }
-
-
-        public class PokemonType
-        {
-            [JsonProperty("type")]
-            public Type Type { get; set; }
-            [JsonProperty("slot")]
-            public int Slot { get; set; }
-        }
-
-        public class Type
-        {
-            [JsonProperty("name")]
-            public string Name {get; set;}
-            [JsonProperty("url")]
-            public string TypeInfoUrl {get; set;}
         }
     }
 }

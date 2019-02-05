@@ -23,6 +23,7 @@ class PokemonSelectForm extends Component {
     fetch('api/Pokemon/full-pokemon/' + pokemonRequest.toString())
     .then(response => response.json())
       .then(data => {
+       console.log(data);
        this.props.onSubmit(data);
       });
   };
