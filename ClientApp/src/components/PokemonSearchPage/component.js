@@ -19,9 +19,9 @@ class PokemonSearchPage extends Component {
 
     return (
       <div className="PokemonSearchPage">
+        <PokemonSelectForm onSubmit={this.onSubmit} />
         {this.state.pokemon &&
          <PokemonInfo pokemon={this.state.pokemon} />}
-        <PokemonSelectForm onSubmit={this.onSubmit} />
       </div>);
   }
 }

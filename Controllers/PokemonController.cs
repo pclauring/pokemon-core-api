@@ -24,7 +24,10 @@ namespace pokemon_card.Controllers
         }
 
         [HttpGet("species/{Id}")]
-        public string GetPokemonSpeciesInfo(string Id) => client.GetStringAsync("https://pokeapi.co/api/v2/pokemon-species/" + Id).Result;
+        public string GetPokemonSpeciesInfo(string Id)
+        {
+            return client.GetStringAsync("https://pokeapi.co/api/v2/pokemon-species/" + Id).Result;
+        }
 
         [HttpGet("full-pokemon/{Id}")]
         public PokemonSpecies GetFullPokemon(string Id)
@@ -33,6 +36,15 @@ namespace pokemon_card.Controllers
             var response = client.GetStringAsync("https://pokeapi.co/api/v2/pokemon/" + Id).Result;
             var pokemon = JsonConvert.DeserializeObject<PokemonSpecies>(response);
             return pokemon;
+        }
+
+        [HttpGet("type-info/{name}")]
+        public PokemonTypeSpec GetTypeInformation(string name)
+        {
+
+            var response = client.GetStringAsync("https://pokeapi.co/api/v2/type/" + name).Result;
+            var pokemonTypeSpec = JsonConvert.DeserializeObject<PokemonTypeSpec>(response);
+            return pokemonTypeSpec;
         }
     }
 }
