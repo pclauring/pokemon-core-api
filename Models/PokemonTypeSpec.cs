@@ -21,5 +21,16 @@ namespace pokemon_card.Models
     {
         [JsonProperty("double_damage_from")]
         public List<PokemonType> DoubleDamageFromRelation { get; set; }
+        [JsonProperty("double_damage_to")]
+        public List<PokemonType> DoubleDamageToRelation { get; set; }
+        [JsonProperty("half_damage_from")]
+        public List<PokemonType> HalfDamageFromRelation { get; set; }
+        [JsonProperty("half_damage_to")]
+        public List<PokemonType> HalfDamageToRelation { get; set; }
+        [JsonProperty("no_damage_from")]
+        public List<PokemonType> NoDamageFromRelation { get; set; }
+        [JsonProperty("no_damage_to")]
+        public List<PokemonType> NoDamageToRelation { get; set; }
+
     }
 }
